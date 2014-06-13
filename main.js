@@ -52,6 +52,7 @@ $(document).on('click', '#board .space', function (e) {
 
 $(document).on('game-win', function (e, winner) {
   // TODO: Alert who won the game
+  alert("You are the " + winner);
 });
 
 // Start the game
