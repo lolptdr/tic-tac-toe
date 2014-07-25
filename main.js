@@ -9,7 +9,7 @@ var spaces = [
 var player1 = 'veggies';
 var player2 = 'junkfood';
 var currentPlayer = null;
-var gameOver = true;
+var gameOver = false;
 
 var setNextTurn = function () {
   if (currentPlayer === player1) {
@@ -31,7 +31,7 @@ var checkForWinner = function () {
     || spaces[6] === spaces[7] && spaces[7] === spaces[8]
     // TODO: Check for rest of game winning cases
     || spaces[0] === spaces[4] && spaces[4] === spaces[8]
-    || spaces[2] === spaces[4] && spaces[6] === spaces[6]
+    || spaces[2] === spaces[4] && spaces[4] === spaces[6]
     
     || spaces[0] === spaces[3] && spaces[3] === spaces[6]
     || spaces[1] === spaces[4] && spaces[4] === spaces[7]
@@ -45,36 +45,30 @@ var checkForWinner = function () {
 };
 
 $(document).on('click', '#board .space', function (e) {
-  if (gameOver) {
-    var spaceNum = $(e.currentTarget).index();
+  var spaceNum = $(e.currentTarget).index();
 
+  if (!gameOver) {
     if (spaces[spaceNum] === player1 || spaces[spaceNum] === player2) {
-      alert("Occupied! Pick another space.");
-    } else {
+      alert("This space is occupied! Pick another space.")
+    } else{
       console.log('You clicked on space #' + spaceNum);
       // Marks the space with the current player's name
       // TODO: Don't mark it unless the space is blank
       spaces[spaceNum] = currentPlayer;
       // Adds a class to elem so css can take care of the visuals
       $('#board .space:eq(' + spaceNum + ')').addClass(currentPlayer);
+      checkForWinner();
       setNextTurn();
+    } else {
+      alert("Game is over.");
+      gameOver = true;
     }
-    checkForWinner();
-  } else {
-    alert("Game is over. Press 'Start New Game' to start new game.");
   }
 });
 
 $(document).on('game-win', function (e, winner) {
   // TODO: Alert who won the game
   alert("You are the winner, " + winner + "!");
-  gameOver = false;
-});
-
-$('#start-game').on('click', function(){
-  $('#board .space').removeClass('junkfood');
-  $('#board .space').removeClass('veggies');
-  spaces = [NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN];
   gameOver = true;
 });
 
