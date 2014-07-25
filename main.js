@@ -35,7 +35,7 @@ var checkForWinner = function () {
     
     || spaces[0] === spaces[3] && spaces[3] === spaces[6]
     || spaces[1] === spaces[4] && spaces[4] === spaces[7]
-    || spaces[3] === spaces[5] && spaces[5] === spaces[8]
+    || spaces[2] === spaces[5] && spaces[5] === spaces[8]
   )
   {
     console.log('somebody won');
@@ -59,9 +59,9 @@ $(document).on('click', '#board .space', function (e) {
       $('#board .space:eq(' + spaceNum + ')').addClass(currentPlayer);
       checkForWinner();
       setNextTurn();
-    } 
+    }
   } else {
-    alert("Game is over. " + currentPlayer + " won the game.");
+    alert("Game is over. " + currentPlayer + " won the game. Press 'Start New Game'.");
     gameOver = true;
   }
 });
@@ -70,6 +70,14 @@ $(document).on('game-win', function (e, winner) {
   // TODO: Alert who won the game
   alert("You are the winner, " + winner + "!");
   gameOver = true;
+});
+
+// In a new game, clear the board space and initialize spaces matrix and reset gameOver status.
+$('#new-game').on('click', function() {
+  $('#board .space').removeClass('junkfood');
+  $('#board .space').removeClass('veggies');
+  spaces = [NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN];
+  gameOver = false;
 });
 
 // Start the game
