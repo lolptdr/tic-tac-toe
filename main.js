@@ -50,7 +50,7 @@ $(document).on('click', '#board .space', function (e) {
   if (!gameOver) {
     if (spaces[spaceNum] === player1 || spaces[spaceNum] === player2) {
       alert("This space is occupied! Pick another space.")
-    } else{
+    } else {
       console.log('You clicked on space #' + spaceNum);
       // Marks the space with the current player's name
       // TODO: Don't mark it unless the space is blank
@@ -59,10 +59,10 @@ $(document).on('click', '#board .space', function (e) {
       $('#board .space:eq(' + spaceNum + ')').addClass(currentPlayer);
       checkForWinner();
       setNextTurn();
-    } else {
-      alert("Game is over.");
-      gameOver = true;
-    }
+    } 
+  } else {
+    alert("Game is over. " + currentPlayer + " won the game.");
+    gameOver = true;
   }
 });
 
