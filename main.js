@@ -42,10 +42,14 @@ var checkForWinner = function () {
     // TODO: Trigger 'game-win' event with the winning player as the event data
     $(document).trigger('game-win', currentPlayer);
   } else if ( 
-    (spaces[0] === "veggies" || spaces[0] === "junkfood") && (spaces[1] === "veggies" || spaces[1] === "junkfood") && 
-    (spaces[2] === "veggies" || spaces[2] === "junkfood") && (spaces[3] === "veggies" || spaces[3] === "junkfood") && 
-    (spaces[4] === "veggies" || spaces[4] === "junkfood") && (spaces[5] === "veggies" || spaces[5] === "junkfood") && 
-    (spaces[6] === "veggies" || spaces[6] === "junkfood") && (spaces[7] === "veggies" || spaces[7] === "junkfood") && 
+    (spaces[0] === "veggies" || spaces[0] === "junkfood") && 
+    (spaces[1] === "veggies" || spaces[1] === "junkfood") && 
+    (spaces[2] === "veggies" || spaces[2] === "junkfood") && 
+    (spaces[3] === "veggies" || spaces[3] === "junkfood") && 
+    (spaces[4] === "veggies" || spaces[4] === "junkfood") && 
+    (spaces[5] === "veggies" || spaces[5] === "junkfood") && 
+    (spaces[6] === "veggies" || spaces[6] === "junkfood") && 
+    (spaces[7] === "veggies" || spaces[7] === "junkfood") && 
     (spaces[8] === "veggies" || spaces[8] === "junkfood")){
     console.log("Tie game");
     $(document).trigger('game-tie');
