@@ -41,6 +41,14 @@ var checkForWinner = function () {
     console.log('somebody won');
     // TODO: Trigger 'game-win' event with the winning player as the event data
     $(document).trigger('game-win', currentPlayer);
+  } else if ( 
+    (spaces[0] === "veggies" || spaces[0] === "junkfood") && (spaces[1] === "veggies" || spaces[1] === "junkfood") && 
+    (spaces[2] === "veggies" || spaces[2] === "junkfood") && (spaces[3] === "veggies" || spaces[3] === "junkfood") && 
+    (spaces[4] === "veggies" || spaces[4] === "junkfood") && (spaces[5] === "veggies" || spaces[5] === "junkfood") && 
+    (spaces[6] === "veggies" || spaces[6] === "junkfood") && (spaces[7] === "veggies" || spaces[7] === "junkfood") && 
+    (spaces[8] === "veggies" || spaces[8] === "junkfood")){
+    console.log("Tie game");
+    $(document).trigger('game-tie');
   }
 };
 
@@ -69,6 +77,11 @@ $(document).on('click', '#board .space', function (e) {
 $(document).on('game-win', function (e, winner) {
   // TODO: Alert who won the game
   alert("You are the winner, " + winner + "!");
+  gameOver = true;
+});
+
+$(document).on('game-tie', function (e) {
+  alert("Tie game! It's a cat! Start new game.");
   gameOver = true;
 });
 
